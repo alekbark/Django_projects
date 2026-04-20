@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Home work #2 Django{% endblock %}</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+
+</head>
+<body>
+
+<nav>
+    <a href="/">Home</a>
+    <a href="/items/">Items</a>
+</nav>
+
+<hr>
+
+{% block content %}
+{% endblock %}
+
+<hr>
+
+<footer>
+    <p>© Home work #2 Django</p>
+</footer>
+
+</body>
+</html>

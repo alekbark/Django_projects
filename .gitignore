@@ -1,0 +1,19 @@
+# любые виртуальные окружения
+.venv/
+venv/
+venv*/
+*/venv*/
+
+# Python
+__pycache__/
+*.pyc
+
+# Django
+db.sqlite3
+
+# IDE
+.vscode/
+.idea/
+
+# Переменные окружения
+.env

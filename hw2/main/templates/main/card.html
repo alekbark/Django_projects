@@ -1,0 +1,11 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+<div style="border:1px solid black; padding:10px;">
+    <h2>{{ item.title }}</h2>
+    <p>ID: {{ item.id }}</p>
+    <p>User: {{ item.userId }}</p>
+</div>
+
+{% endblock %}
