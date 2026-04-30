@@ -1,51 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Список задач</h1>
+{% extends 'tasks/base.html' %}
 
-<h3>Задачи</h3>
-<ul>
-    <li><a href="{% url 'task_detail' 1 %}">Задача 1</a></li>
-    <li><a href="{% url 'task_detail' 2 %}">Задача 2</a></li>
-</ul>
+{% block title %}Список задач{% endblock %}
 
-<h3>CRUD</h3>
-<ul>
-    <li><a href="{% url 'task_create' %}">Создать задачу</a></li>
-    <li><a href="{% url 'task_update' 1 %}">Обновить задачу 1</a></li>
-    <li><a href="{% url 'task_delete' 1 %}">Удалить задачу 1</a></li>
-</ul>
+{% block content %}
 
-<h3>Фильтры</h3>
-<ul>
-    <li><a href="{% url 'completed_tasks' %}">Выполненные</a></li>
-    <li><a href="{% url 'active_tasks' %}">Активные</a></li>
-</ul>
+<h1 class="mb-4">Список задач</h1>
 
-<h3>Дата</h3>
-<ul>
-    <li><a href="/tasks/date/2025/">За 2025 год</a></li>
-    <li><a href="/tasks/date/2025/4/">Апрель 2025</a></li>
-</ul>
+<div class="row">
 
-<h3>Пользователь</h3>
-<ul>
-    <li><a href="/tasks/user/oleg/">Задачи Oleg</a></li>
-</ul>
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5>Задачи</h5>
+                {% for task in tasks %}
+                    <a href="{% url 'task_detail' task.id %}" class="btn btn-outline-primary btn-sm mb-1">
+                        {{ task.title }}
+                    </a><br>
+                {% empty %}
+                    <p>Нет задач</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
 
-<h3>Пагинация</h3>
-<ul>
-    <li><a href="{% url 'task_list_paginated' 1 %}">Страница 1</a></li>
-    <li><a href="{% url 'task_list_paginated' 2 %}">Страница 2</a></li>
-</ul>
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5>CRUD</h5>
+                <a href="{% url 'task_create' %}" class="btn btn-success btn-sm mb-1">Создать</a><br>
+                <a href="{% url 'task_update' 1 %}" class="btn btn-warning btn-sm mb-1">Обновить</a><br>
+                <a href="{% url 'task_delete' 1 %}" class="btn btn-danger btn-sm">Удалить</a>
+            </div>
+        </div>
+    </div>
 
-<h3>Slug</h3>
-<ul>
-    <li><a href="{% url 'task_by_slug' 'my-task' %}">Задача по slug</a></li>
-</ul>
-</body>
-</html>
+</div>
+
+{% endblock %}

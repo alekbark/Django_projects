@@ -1,11 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-<h1>Обновление задачи {{ id }}</h1>
-<a href="{% url 'task_list' %}">Назад</a>
-</body>
-</html>
+{% extends 'tasks/base.html' %}
+
+{% block title %}Обновление задачи{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-3">Обновление задачи {{ id }}</h1>
+
+<a href="{% url 'task_list' %}" class="btn btn-secondary">Назад</a>
+
+{% endblock %}
