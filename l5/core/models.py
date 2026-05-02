@@ -38,8 +38,21 @@ class IceCream(models.Model):
     name = models.CharField(max_length=100)
     price = models.IntegerField(validators=[validate_positive]) # применили валидатор HW7
 
+    # создаем поле со списком для HW9
+    ICECREAM_KINDS = [
+        ('ge', 'Gelato'),
+        ('fc', 'Frozen Custard'),
+        ('ss', 'Soft Serve'),
+        ('fy', 'Frozen Yogurt'),
+        ('sh', 'Sherbet'),
+        ('ri', 'Rolled Ice Cream')
+    ]
+    kind = models.CharField(max_length=2, choices=ICECREAM_KINDS, default='ss')
+
+    # обновил метод отображения для HW9 с помощью get_<имя_поля>_display()
+    # для методов с choises (со списком для выбора)
     def __str__(self):
-        return self.name
+        return f'{self.name} ({self.get_kind_display()})'
 
 class Kiosk(models.Model):
     name = models.CharField(max_length=100)
