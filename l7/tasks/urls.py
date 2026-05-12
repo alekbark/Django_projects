@@ -1,7 +1,10 @@
-from django.urls import re_path
+from django.urls import re_path, path
 from . import views
 
 urlpatterns = [
+
+    # HttpResponse
+    path('test/', views.show_request),
 
     # 📋 Список всех задач
     re_path(r'^$', views.task_list, name='task_list'),
