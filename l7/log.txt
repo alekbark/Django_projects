@@ -1,0 +1,42 @@
+
+TIME: 2026-05-13 13:38:50.478682 <br>
+METHOD: POST <br>
+PATH: /tasks/login/ <br>
+GET: {} <br>
+POST: {'csrfmiddlewaretoken': '1lML0BWiZFnmOpZnC6BHShZhsd3yvAP3Oi4ZCv9mKS1YrnLjzax0t9oLxERxwCPY', 'login': 'Alek'} <br>
+-------------------------- 
+
+TIME: 2026-05-13 13:39:13.702120 <br>
+METHOD: POST <br>
+PATH: /tasks/login/ <br>
+GET: {} <br>
+POST: {'csrfmiddlewaretoken': 'cOWDepxXDO8TFMVfHWkwYs746KmfCDIJZLeRQjK1o1MviKHbE0gPzkwybbaeDFIE', 'login': 'Alena'} <br>
+-------------------------- 
+
+TIME: 2026-05-13 13:39:42.735890 <br>
+METHOD: POST <br>
+PATH: /tasks/login/ <br>
+GET: {} <br>
+POST: {'csrfmiddlewaretoken': 'rZ3eJxpZNcSoxPFoqpvVuYIroI376UIfeWlslrC3ypw0aNrkntre5Q7Vt9R67WIa', 'login': 'Volk'} <br>
+-------------------------- 
+
+TIME: 2026-05-13 13:41:06.557125 
+METHOD: POST 
+PATH: /tasks/login/ 
+GET: {} 
+POST: {'csrfmiddlewaretoken': 'WXa5PgRUTD1DxOlrufMak0PFFpFZB7jNJUsjra4YEQFfaM7nrjItVSe9KQtYC9jI', 'login': 'Volk'} 
+-------------------------- 
+
+TIME: 2026-05-13 13:41:20.919356 
+METHOD: POST 
+PATH: /tasks/login/ 
+GET: {} 
+POST: {'csrfmiddlewaretoken': 'yAEeTFr95WPFN7PyJjgL5Ztn2kHEcCiQlxWsvzEdQ9thq5BuGnc4GRSR7LvDdEiL', 'login': 'Olesha'} 
+-------------------------- 
+
+TIME: 2026-05-13 13:41:34.071030 
+METHOD: POST 
+PATH: /tasks/login/ 
+GET: {} 
+POST: {'csrfmiddlewaretoken': 'g513LwbRRm8FpjoNqgJGrvfQxCaPBsSC32jhnqoVCzMh2haJnkFZ2nEkC3YOCuSx', 'login': 'Arseniy'} 
+-------------------------- 

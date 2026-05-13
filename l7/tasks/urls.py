@@ -1,10 +1,14 @@
 from django.urls import re_path, path
 from . import views
+from .views import protected_view
 
 urlpatterns = [
 
-    # HttpResponse
+    # PW16
     path('test/', views.show_request),
+
+    # HW16
+    path('login/', views.protected_view),
 
     # 📋 Список всех задач
     re_path(r'^$', views.task_list, name='task_list'),

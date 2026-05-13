@@ -1,12 +1,14 @@
-from os import name
-
 from django.shortcuts import render
 from .models import Task
 from django.http import HttpResponse, HttpResponseRedirect
+from datetime import datetime
 
 
-# PW16 #1 Выведите с помощью методов языка Python все «поля», т.е.
+
+# PW16 --------------------------------------------------------------------
+# 1. Выведите с помощью методов языка Python все «поля», т.е.
 # параметры запроса.
+
 # 2. Придумайте и опишите ситуацию, когда необходимо перенаправление.
 # Перенаправляем на главную страницу когда в параметрах URL не указано имя "name"
 
@@ -26,6 +28,38 @@ def show_request(request):
         """)
     else:
         return HttpResponseRedirect('/tasks/')
+
+# HW16 --------------------------------------------------------------------
+# 1. Выполните перенаправление в случае отсутствия «логина» пользователя на
+# любую другую страницу.
+# Добавил форму с вводом логина
+
+# 2. Залогируйте в любой текстовый файл данные с запроса.
+
+def protected_view(request):
+    if request.method == 'POST':
+        login = request.POST.get('login')
+
+# здесь записывается лог
+        with open('log.txt', 'a') as f:
+            f.write(f"""
+TIME: {datetime.now()} 
+METHOD: {request.method} 
+PATH: {request.path} 
+GET: {request.GET.dict()} 
+POST: {request.POST.dict()} 
+-------------------------- 
+""")
+
+        if not login:
+            return HttpResponse("Введите логин")
+
+        return HttpResponse(f"""
+            <h2>Добро пожаловать, {login}</h2>
+            <meta http-equiv="refresh" content="3;url=/tasks/">
+        """)
+
+    return render(request, 'tasks/login.html')
 
 def task_list(request):
     tasks = Task.objects.all()
