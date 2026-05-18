@@ -13,26 +13,26 @@
             <div class="card-body">
                 <h5>Задачи</h5>
                 {% for task in tasks %}
-                    <a href="{% url 'task_detail' task.id %}" class="btn btn-outline-primary btn-sm mb-1">
-                        {{ task.title }}
-                    </a><br>
+                    <div class="d-flex">
+                        <a href="{% url 'task_detail' task.id %}" class="btn btn-outline-primary btn-sm me-auto mb-1">
+                            {{ task.title }}
+                        </a>
+                        <a href="{% url 'task_update' task.id %}" class="btn btn-warning btn-sm me-1 mb-1">Изменить</a>
+                        <form action="{% url 'task_delete' task.id %}" class="d-inline-block" method="POST">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger btn-sm mb-1">Удалить</button>
+                        </form>
+                    </div>
                 {% empty %}
                     <p>Нет задач</p>
                 {% endfor %}
+
+                <a href="{% url 'task_create' %}" class="btn btn-success btn-sm mt-3">Создать</a><br>
+
             </div>
         </div>
     </div>
 
-    <div class="col-md-4">
-        <div class="card mb-3">
-            <div class="card-body">
-                <h5>CRUD</h5>
-                <a href="{% url 'task_create' %}" class="btn btn-success btn-sm mb-1">Создать</a><br>
-                <a href="{% url 'task_update' 1 %}" class="btn btn-warning btn-sm mb-1">Обновить</a><br>
-                <a href="{% url 'task_delete' 1 %}" class="btn btn-danger btn-sm">Удалить</a>
-            </div>
-        </div>
-    </div>
 
 </div>
 

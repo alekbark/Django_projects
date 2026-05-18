@@ -1,4 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
+from django.views.decorators.http import require_POST
+
 from .models import Task
 from django.http import HttpResponse, HttpResponseRedirect
 from datetime import datetime
@@ -66,13 +68,39 @@ def task_list(request):
     return render(request, 'tasks/task_list.html', {'tasks': tasks})
 
 def task_detail(request, id):
-    return render(request, 'tasks/task_detail.html', {'id': id})
+    task = get_object_or_404(Task, id=id)
+    return render(request, 'tasks/task_detail.html', {'task': task})
 
 def task_create(request):
+
+    if request.method == 'POST':
+
+        title = request.POST.get('title')
+        description = request.POST.get('description')
+
+        Task.objects.create(title=title, description=description)
+
+        return redirect('/tasks/')
+
     return render(request, 'tasks/task_create.html')
 
 def task_update(request, id):
-    return render(request, 'tasks/task_update.html', {'id': id})
 
+    task = get_object_or_404(Task, id=id)
+
+    if request.method == 'POST':
+
+        task.title = request.POST.get('title')
+        task.description = request.POST.get('description')
+
+        task.save()
+
+        return redirect('/tasks/')
+
+    return render(request, 'tasks/task_update.html', {'task': task})
+
+@require_POST
 def task_delete(request, id):
-    return render(request, 'tasks/task_delete.html', {'id': id})
+    task = get_object_or_404(Task, id=id)
+    task.delete()
+    return redirect('/tasks/')

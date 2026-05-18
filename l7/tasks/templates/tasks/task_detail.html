@@ -6,7 +6,16 @@
 
 <h1 class="mb-3">Детали задачи</h1>
 
-<p class="fs-5">ID: <strong>{{ id }}</strong></p>
+<p class="fs-5">Задача: <strong>{{ task.title }}</strong></p>
+<p class="fs-5">Описание: {{ task.description }}</p>
+<p class="fs-6">Создана: {{ task.created_at }}</p>
+<p class="fs-6">Статус:
+    {% if task.is_completed %}
+        Выполнено
+    {% else %}
+        Не выполнено
+    {% endif %}
+</p>
 
 <a href="{% url 'task_list' %}" class="btn btn-secondary">Назад</a>
 
