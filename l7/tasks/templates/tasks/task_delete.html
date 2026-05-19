@@ -1,0 +1,25 @@
+{% extends 'tasks/base.html' %}
+
+{% block title %}Удаление задачи{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-3">Удаление задачи</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <div class="mb-3">
+        Вы действительно хотите удалить задачу: {{ task.title }}?
+    </div>
+
+    <div>
+        <button class="btn mb-3 btn-primary" type="submit">Удалить</button>
+    </div>
+
+</form>
+
+<a href="{% url 'task_list' %}" class="btn btn-secondary">Назад</a>
+
+{% endblock %}

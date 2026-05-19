@@ -47,3 +47,10 @@ PATH: /tasks/login/
 GET: {} 
 POST: {'csrfmiddlewaretoken': 'O1RMjYF1Nxtokz2jnEiTYlC0xBLjQsQIBY90VSS5yK70XxOfkIeczd1uC2ziRuQD', 'login': 'Arseniy'} 
 -------------------------- 
+
+TIME: 2026-05-19 03:44:39.993043 
+METHOD: POST 
+PATH: /tasks/login/ 
+GET: {} 
+POST: {'csrfmiddlewaretoken': 'wzLBbk5CFXGulIPuYY38xEhHz08nQdPEjw3PNeiGqak6YGBqV2Zr8wGbErWmRfPz', 'login': 'Alek'} 
+-------------------------- 

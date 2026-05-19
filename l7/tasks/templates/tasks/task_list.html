@@ -18,10 +18,7 @@
                             {{ task.title }}
                         </a>
                         <a href="{% url 'task_update' task.id %}" class="btn btn-warning btn-sm me-1 mb-1">Изменить</a>
-                        <form action="{% url 'task_delete' task.id %}" class="d-inline-block" method="POST">
-                            {% csrf_token %}
-                            <button type="submit" class="btn btn-danger btn-sm mb-1">Удалить</button>
-                        </form>
+                        <a href="{% url 'task_delete' task.id %}" class="btn btn-danger btn-sm me-1 mb-1">Удалить</a>
                     </div>
                 {% empty %}
                     <p>Нет задач</p>
