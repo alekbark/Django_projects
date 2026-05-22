@@ -1,0 +1,15 @@
+{% extends 'users/base.html' %}
+
+{% block title %}Данные пользователя{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-3">Данные пользователя</h1>
+
+<p class="fs-5">Пользователь: <strong>{{ user.username }}</strong></p>
+<p class="fs-5">Email: {{ user.email }}</p>
+<p class="fs-6">Дата и время регистрации: {{ user.created_at }}</p>
+
+<a href="{% url 'users' %}" class="btn btn-secondary">Назад</a>
+
+{% endblock %}

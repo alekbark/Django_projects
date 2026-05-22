@@ -1,10 +1,11 @@
-from django.shortcuts import render, get_object_or_404, redirect
-from django.views.decorators.http import require_POST
-from django.views.generic import TemplateView, CreateView, UpdateView, DetailView, DeleteView
+from django.shortcuts import render
+from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 
 from .models import Task
 from django.http import HttpResponse, HttpResponseRedirect
 from datetime import datetime
+
+
 
 def show_request(request):
     name = request.GET.get('name')
@@ -48,19 +49,11 @@ POST: {request.POST.dict()}
 
     return render(request, 'tasks/login.html')
 
-class TaskListView(TemplateView):
-    template_name = 'tasks/task_list.html'
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-
-        context['tasks'] = Task.objects.all()
-
-        return context
+class TaskListView(ListView):
+    model = Task
 
 class TaskDetailView(DetailView):
     model = Task
-    template_name = 'tasks/task_detail.html'
 
 class TaskCreateView(CreateView):
     model = Task

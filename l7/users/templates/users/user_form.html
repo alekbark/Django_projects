@@ -1,0 +1,29 @@
+{% extends 'users/base.html' %}
+
+{% block title %}Создание пользователя{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-3">Создание пользователя</h1>
+
+<form method="POST">
+
+    {% csrf_token %}
+
+    <div class="mb-3">
+        <input class="form-control" type="text" name="username" placeholder="Ваше имя">
+    </div>
+
+    <div class="mb-3">
+        <input class="form-control" type="email" name="email" placeholder="Ваш Email">
+    </div>
+
+    <div>
+        <button class="btn mb-3 btn-primary" type="submit">Создать</button>
+    </div>
+
+</form>
+
+<a href="{% url 'users' %}" class="btn btn-secondary">Назад</a>
+
+{% endblock %}

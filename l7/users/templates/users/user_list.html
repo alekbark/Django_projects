@@ -1,0 +1,52 @@
+{% extends 'users/base.html' %}
+
+{% block title %}Список пользователей{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">Список пользователей</h1>
+
+<form method="GET" action="{% url 'find_user' %}" class="mb-3">
+
+    <div class="input-group">
+
+        <input
+            type="number"
+            name="user_id"
+            class="form-control"
+            placeholder="Введите ID пользователя">
+
+        <button class="btn btn-primary" type="submit">
+            Найти
+        </button>
+
+    </div>
+
+</form>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5>Пользователи</h5>
+                {% for user in users %}
+                    <div class="d-flex">
+                        <a href="{% url 'user_detail' user.id %}" class="btn btn-outline-primary btn-sm me-auto mb-1">
+                            {{ user.username }}
+                        </a>
+                    </div>
+                {% empty %}
+                    <p>Нет активных пользователей</p>
+                {% endfor %}
+
+                <a href="{% url 'user_form' %}" class="btn btn-success btn-sm mt-3">Регистрация</a><br>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}
