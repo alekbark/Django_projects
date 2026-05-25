@@ -1,0 +1,31 @@
+{% extends 'tasks/base.html' %}
+
+{% block title %}Список задач по дате{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">Список задач за месяц</h1>
+
+<div class="row">
+
+    <div class="col-md-4">
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5>Задачи за {{ month|date:"F Y" }}</h5>
+                {% for task in task_list %}
+                    <div class="d-flex">
+                        <a href="{% url 'task_detail' task.id %}" class="btn btn-outline-primary btn-sm me-auto mb-1">
+                            {{ task.title }}
+                        </a>
+                    </div>
+                {% empty %}
+                    <p>Нет задач</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+{% endblock %}

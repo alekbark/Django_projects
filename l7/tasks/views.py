@@ -1,14 +1,18 @@
-from django.shortcuts import render
-from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
-
+from django.shortcuts import render, redirect
+from django.views.generic import (
+    ListView, CreateView, UpdateView, DetailView, DeleteView,
+    MonthArchiveView, YearArchiveView, TodayArchiveView, RedirectView
+)
 from .models import Task
 from django.http import HttpResponse, HttpResponseRedirect
 from datetime import datetime
 
-
+class TaskRedirectView(RedirectView):
+    pattern_name = 'task_list'
 
 def show_request(request):
     name = request.GET.get('name')
+
     if name:
         return HttpResponse(f"""
         METHOD: {request.method} <br>
@@ -22,7 +26,7 @@ def show_request(request):
         META: {request.META}
         """)
     else:
-        return HttpResponseRedirect('/tasks/')
+        return redirect('go_to_tasks')
 
 def protected_view(request):
     if request.method == 'POST':
@@ -71,3 +75,21 @@ class TaskDeleteView(DeleteView):
     model = Task
     template_name = 'tasks/task_delete.html'
     success_url = '/tasks/'
+
+class TaskMonthArchiveView(MonthArchiveView):
+    model = Task
+    template_name = 'tasks/month_archive.html'
+    date_field = 'created_at'
+    month_format = '%m'
+
+class TaskYearArchiveView(YearArchiveView):
+    model = Task
+    template_name = 'tasks/year_archive.html'
+    date_field = 'created_at'
+    year_format = '%Y'
+    make_object_list = True
+
+class TaskTodayArchiveView(TodayArchiveView):
+    model = Task
+    template_name = 'tasks/today_archive.html'
+    date_field = 'created_at'
