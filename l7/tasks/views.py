@@ -55,6 +55,7 @@ POST: {request.POST.dict()}
 
 class TaskListView(ListView):
     model = Task
+    paginate_by = 5
 
 class TaskDetailView(DetailView):
     model = Task
