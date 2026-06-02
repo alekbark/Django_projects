@@ -1,16 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ model_name }}</title>
-</head>
-<body>
+{% extends 'base.html' %}
+
+{% block title %}
+{{ model_name }}
+{% endblock %}
+
+{% block content %}
+
 <h1>{{ model_name }}</h1>
 
 <ul>
-  {% for obj in objects %}
-    <li>{{ obj }}</li>
-  {% endfor %}
+    {% for obj in objects %}
+        <li>{{ obj }}</li>
+    {% endfor %}
 </ul>
-</body>
-</html>
+
+{% endblock %}

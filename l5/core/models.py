@@ -37,6 +37,7 @@ class Child(models.Model):
 class IceCream(models.Model):
     name = models.CharField(max_length=100)
     price = models.IntegerField(validators=[validate_positive]) # применили валидатор HW7
+    created_at = models.DateTimeField(auto_now_add=True) # это поле не отображается в forms HW25
 
     # создаем поле со списком для HW9
     ICECREAM_KINDS = [
@@ -61,3 +62,4 @@ class Kiosk(models.Model):
 
     def __str__(self):
         return self.name
+

@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import Person, Child, IceCream, Kiosk
+from .forms import IceCreamForm
 
 def universal_list(request, model_name):
     models_map = {
@@ -19,4 +20,19 @@ def universal_list(request, model_name):
     return render(request, 'list.html', {
         'objects': objects,
         'model_name': model_name
+    })
+
+def create_icecream(request):
+
+    if request.method == 'POST':
+        form = IceCreamForm(request.POST)
+
+        if form.is_valid():
+            form.save()
+
+    else:
+        form = IceCreamForm()
+
+    return render(request, 'icecream_form.html', {
+        'form': form
     })
