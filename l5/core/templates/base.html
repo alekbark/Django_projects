@@ -3,20 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Киоски с мороженым{% endblock %}</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-<nav>
-  <a href="/persons/">Люди</a> |
-  <a href="/children/">Дети</a> |
-  <a href="/icecreams/">Мороженое</a> |
-  <a href="/kiosks/">Киоски</a>
-</nav>
+<div class="container py-4">
 
-<hr>
+    <nav class="d-flex flex-wrap gap-2 mb-4">
+      <a class="btn btn-outline-primary btn-sm" href="/persons/">Люди</a>
 
-{% block content %}
-{% endblock %}
+      <a class="btn btn-outline-primary btn-sm" href="/children/">Дети</a>
+
+      <a class="btn btn-outline-primary btn-sm" href="/icecreams/">Мороженое</a>
+
+      <a class="btn btn-outline-primary btn-sm" href="/kiosks/">Киоски</a>
+
+      <a class="btn btn-success btn-sm" href="/icecream/create/">
+          Создать мороженое
+      </a>
+
+      <a class="btn btn-warning btn-sm" href="/icecreams/create/">
+          Создать несколько мороженых
+      </a>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+</div>
 
 </body>
 </html>

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Создать несколько мороженых
+{% endblock %}
+
+{% block content %}
+
+<h1 class="mb-4">Создать несколько мороженых</h1>
+
+<form method="post">
+    {% csrf_token %}
+
+    {{ formset.management_form }}
+
+    {% for form in formset %}
+        <div class="card mb-3">
+            <div class="card-body">
+
+                <h5 class="card-title">
+                    Мороженое {{ forloop.counter }}
+                </h5>
+
+                {{ form.as_p }}
+
+            </div>
+
+        </div>
+    {% endfor %}
+
+    <button class="mb-4" type="submit">
+        Сохранить
+    </button>
+</form>
+
+{% endblock %}
