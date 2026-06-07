@@ -57,6 +57,15 @@ class TaskListView(ListView):
     model = Task
     paginate_by = 10
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        print("USER:", self.request.user)
+        print("USERNAME:", self.request.user.username)
+        print("IS STAFF:", self.request.user.is_staff)
+
+        return context
+
 class TaskDetailView(DetailView):
     model = Task
 

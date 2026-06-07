@@ -54,6 +54,11 @@
 
 </div>
 
-
+<form class="mt-3" method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit" class="btn btn-outline-danger">
+        Выйти
+    </button>
+</form>
 
 {% endblock %}
