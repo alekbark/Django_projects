@@ -6,7 +6,7 @@ class IceCreamForm(ModelForm):
 
     class Meta:
         model = IceCream
-        fields = ('name', 'kind', 'price')
+        fields = ('name', 'kind', 'recommended_price')
 
 IceCreamFormSet = modelformset_factory(
     IceCream,

@@ -36,7 +36,7 @@ class Child(models.Model):
 
 class IceCream(models.Model):
     name = models.CharField(max_length=100)
-    price = models.IntegerField(validators=[validate_positive]) # применили валидатор HW7
+    recommended_price = models.IntegerField(validators=[validate_positive]) # применили валидатор HW7
     created_at = models.DateTimeField(auto_now_add=True, null=True) # это поле не отображается в forms HW25
 
     # создаем поле со списком для HW9
@@ -58,8 +58,27 @@ class IceCream(models.Model):
 class Kiosk(models.Model):
     name = models.CharField(max_length=100)
     location = models.CharField(max_length=200)
-    icecreams = models.ManyToManyField(IceCream) # связь по заданию из HW6
+
+    icecreams = models.ManyToManyField( # связь по заданию из HW6
+        IceCream,
+        through='KioskIceCream'         # many-to-many через through-model для HW29
+    )
 
     def __str__(self):
         return self.name
 
+class KioskIceCream(models.Model):
+    kiosk = models.ForeignKey(Kiosk, on_delete=models.CASCADE)
+    icecream = models.ForeignKey(IceCream, on_delete=models.CASCADE)
+
+    purchase_price = models.DecimalField(max_digits=5, decimal_places=2)
+    sale_price = models.DecimalField(max_digits=5, decimal_places=2)
+
+    quantity = models.IntegerField(default=0)
+
+    is_available = models.BooleanField(default=False)
+
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+
+    def __str__(self):
+        return f'{self.kiosk} - {self.icecream}'
