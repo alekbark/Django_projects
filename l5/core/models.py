@@ -17,6 +17,30 @@ class Person(models.Model):
     def __str__(self):
         return self.name
 
+class Employee(Person):
+    hire_date = models.DateField()
+
+    def __str__(self):
+        return f'{self.name} (Employee)'
+
+class Manager(Employee):
+    EDUCATION_CHOICES = [
+        ('sc', 'Среднее'),
+        ('sp', 'Среднее специальное'),
+        ('he', 'Высшее')
+    ]
+
+    education = models.CharField(
+        max_length=2,
+        choices=EDUCATION_CHOICES,
+        default='he'
+    )
+
+    grade = models.IntegerField(
+        validators=[validate_positive],
+        default=1
+    )
+
 class Child(models.Model):
     name = models.CharField(max_length=100)
     age = models.IntegerField(validators=[validate_positive]) # применили валидатор HW7
