@@ -11,21 +11,31 @@
 <div class="container py-4">
 
     <nav class="d-flex flex-wrap gap-2 mb-4">
-      <a class="btn btn-outline-primary btn-sm" href="/persons/">Люди</a>
+        <a class="btn btn-outline-primary btn-sm" href="/persons/">Люди</a>
 
-      <a class="btn btn-outline-primary btn-sm" href="/children/">Дети</a>
+        <a class="btn btn-outline-primary btn-sm" href="/children/">Дети</a>
 
-      <a class="btn btn-outline-primary btn-sm" href="/icecreams/">Мороженое</a>
+        <a class="btn btn-outline-primary btn-sm" href="/icecreams/">Мороженое</a>
 
-      <a class="btn btn-outline-primary btn-sm" href="/kiosks/">Киоски</a>
+        <a class="btn btn-outline-primary btn-sm" href="/kiosks/">Киоски</a>
 
-      <a class="btn btn-success btn-sm" href="/icecream/create/">
+        <a class="btn btn-success btn-sm" href="/icecream/create/">
           Создать мороженое
-      </a>
+        </a>
 
-      <a class="btn btn-warning btn-sm" href="/icecreams/create/">
-          Создать несколько мороженых
-      </a>
+        <a class="btn btn-warning btn-sm" href="/icecreams/create/">
+            Создать несколько мороженых
+        </a>
+
+        <a href="{% url 'upload_document' %}" class="btn btn-warning btn-sm">
+            Загрузка документа
+        </a>
+
+        <a href="{% url 'document_list' %}" class="btn btn-warning btn-sm">
+            Список документов
+        </a>
+
+
     </nav>
 
     {% block content %}

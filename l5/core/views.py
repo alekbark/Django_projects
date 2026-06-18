@@ -1,7 +1,7 @@
 from django.http import Http404
 from django.shortcuts import render, redirect
-from .models import Person, Child, IceCream, Kiosk, Feedback
-from .forms import IceCreamForm, IceCreamFormSet, FeedbackForm
+from .models import Person, Child, IceCream, Kiosk, Feedback, Document
+from .forms import IceCreamForm, IceCreamFormSet, FeedbackForm, DocumentForm
 
 def universal_list(request, model_name):
     models_map = {
@@ -83,3 +83,44 @@ def feedback_create(request):
 def feedback_success(request):
 
     return render(request, 'feedback_success.html')
+
+# HW37
+def upload_document(request):
+
+    if request.method == 'POST':
+
+        form = DocumentForm(
+            request.POST,
+            request.FILES
+        )
+
+        if form.is_valid():
+
+            form.save()
+
+            return redirect(
+                'document_list'
+            )
+
+    else:
+
+        form = DocumentForm()
+
+    return render(
+        request,
+        'document_form.html',
+        {
+            'form': form
+        }
+    )
+
+# HW37
+def document_list(request):
+
+    documents = Document.objects.all()
+
+    return render(
+        request,
+        'document_list.html',
+        {'documents': documents}
+    )

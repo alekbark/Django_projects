@@ -1,5 +1,5 @@
 from django import forms
-from .models import IceCream
+from .models import IceCream, Document
 from captcha.fields import CaptchaField
 
 # форма для создания записи с мороженым HW25
@@ -21,4 +21,15 @@ class FeedbackForm(forms.Form):
     email = forms.EmailField()
     message = forms.CharField(widget=forms.Textarea)
     captcha = CaptchaField()
+
+# HW37
+class DocumentForm(forms.ModelForm):
+
+    class Meta:
+        model = Document
+
+        fields = [
+            'title',
+            'file',
+        ]
 

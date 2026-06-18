@@ -1,5 +1,6 @@
 from django.db import models
 from django.core.exceptions import ValidationError
+from django.core.validators import FileExtensionValidator
 
 # валидатор по заданию из HW7
 def validate_positive(value):
@@ -120,3 +121,27 @@ class Feedback(models.Model):
 
     def __str__(self):
         return self.name
+
+# HW37
+class Document(models.Model):
+    # название файла
+    title = models.CharField(max_length=255)
+
+    # загружаемый файл
+    file = models.FileField(
+        upload_to='documents/',
+        validators=[
+            FileExtensionValidator(
+                allowed_extensions=[
+                    'pdf',
+                    'xlsx'
+                ]
+            )
+        ]
+    )
+
+    # дата загрузки
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
