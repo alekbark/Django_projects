@@ -1,15 +1,24 @@
-from django.forms import ModelForm, modelformset_factory
+from django import forms
 from .models import IceCream
+from captcha.fields import CaptchaField
 
 # форма для создания записи с мороженым HW25
-class IceCreamForm(ModelForm):
+class IceCreamForm(forms.ModelForm):
 
     class Meta:
         model = IceCream
         fields = ('name', 'kind', 'recommended_price')
 
-IceCreamFormSet = modelformset_factory(
+IceCreamFormSet = forms.modelformset_factory(
     IceCream,
     form=IceCreamForm,
     extra=3
 )
+
+# HW32
+class FeedbackForm(forms.Form):
+    name = forms.CharField(max_length=100)
+    email = forms.EmailField()
+    message = forms.CharField(widget=forms.Textarea)
+    captcha = CaptchaField()
+

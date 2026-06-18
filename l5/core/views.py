@@ -1,6 +1,7 @@
+from django.http import Http404
 from django.shortcuts import render, redirect
-from .models import Person, Child, IceCream, Kiosk
-from .forms import IceCreamForm, IceCreamFormSet
+from .models import Person, Child, IceCream, Kiosk, Feedback
+from .forms import IceCreamForm, IceCreamFormSet, FeedbackForm
 
 def universal_list(request, model_name):
     models_map = {
@@ -13,7 +14,7 @@ def universal_list(request, model_name):
     model = models_map.get(model_name)
 
     if not model:
-        return render(request, '404.html')  # можно упростить позже
+        raise Http404
 
     objects = model.objects.all()
 
@@ -56,3 +57,29 @@ def create_icecreams(request):
         'icecream_formset.html',
         {'formset': formset}
     )
+
+# HW32
+def feedback_create(request):
+
+    if request.method == 'POST':
+
+        form = FeedbackForm(request.POST)
+
+        if form.is_valid():
+
+            Feedback.objects.create(
+                name=form.cleaned_data['name'],
+                email=form.cleaned_data['email'],
+                message=form.cleaned_data['message'],
+            )
+
+        return redirect('feedback_success')
+
+    else:
+        form = FeedbackForm()
+
+    return render(request, 'feedback_form.html', {'form': form})
+
+def feedback_success(request):
+
+    return render(request, 'feedback_success.html')
