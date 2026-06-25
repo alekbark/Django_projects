@@ -35,6 +35,34 @@
             Список документов
         </a>
 
+        {% if user.is_authenticated %}
+
+            <span class="btn btn-outline-secondary btn-sm disabled">
+                {{ user.username }}
+            </span>
+
+            <form
+                method="post"
+                action="{% url 'logout' %}"
+            >
+                {% csrf_token %}
+
+                <button class="btn btn-danger btn-sm">
+                    Выйти
+                </button>
+            </form>
+
+        {% else %}
+
+            <a
+                href="{% url 'login' %}"
+                class="btn btn-primary btn-sm"
+            >
+                Войти
+            </a>
+
+        {% endif %}
+
 
     </nav>
 
